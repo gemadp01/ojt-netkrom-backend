@@ -13,6 +13,7 @@ const port = process.env.PORT;
 connectMongoose();
 
 //! routes
+import authRoutes from "./src/routes/authRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import productRoutes from "./src/routes/productRoutes.js";
 import contactRoutes from "./src/routes/contactRoutes.js";
@@ -22,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 
 //! endpoints
+app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/contact", contactRoutes);
