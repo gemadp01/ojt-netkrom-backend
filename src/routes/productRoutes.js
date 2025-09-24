@@ -3,6 +3,7 @@ import {
   createProduct,
   deleteProduct,
   getProductByAdmin,
+  getProducts,
 } from "../controllers/productController.js";
 import { body } from "express-validator";
 import upload from "../lib/uploadImage.js";
@@ -11,7 +12,7 @@ import adminCheck from "../middleware/adminCheck.js";
 const router = express.Router();
 
 //! public
-// router.get("/");
+router.get("/", getProducts);
 // router.get("/:productId");
 
 //! protected
