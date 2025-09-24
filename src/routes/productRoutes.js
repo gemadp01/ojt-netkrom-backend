@@ -1,6 +1,7 @@
 import express from "express";
 import {
   createProduct,
+  deleteProduct,
   getProductByAdmin,
 } from "../controllers/productController.js";
 import { body } from "express-validator";
@@ -53,6 +54,6 @@ router.post(
   createProduct
 );
 // router.put("/:productId");
-// router.delete("/:productId");
+router.delete("/:productId", deleteProduct);
 
 export default router;
