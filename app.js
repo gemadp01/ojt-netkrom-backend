@@ -21,6 +21,7 @@ import contactRoutes from "./src/routes/contactRoutes.js";
 //! middleware
 app.use(cors());
 app.use(express.json());
+app.use(express.static("public/uploads"));
 
 //! endpoints
 app.use("/api/auth", authRoutes);

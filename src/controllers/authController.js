@@ -30,7 +30,7 @@ export const login = async (req, res) => {
   const JWT_SECRET = process.env.JWT_SECRET;
   const { username, password } = req.body;
 
-  // cek user ada gak
+  // cek user
   const user = await User.findOne({ username });
   if (!user) {
     return res.status(400).json({ message: "User not found" });
@@ -45,7 +45,7 @@ export const login = async (req, res) => {
   }
 
   // generate token
-  const token = jwt.sign({ id: user._id }, JWT_SECRET, {
+  const token = jwt.sign({ id: user._id, role: user.role }, JWT_SECRET, {
     expiresIn: process.env.JWT_EXPIRES_IN,
   });
 
@@ -53,7 +53,6 @@ export const login = async (req, res) => {
     success: true,
     message: "Login successful",
     token,
-    userId: user._id,
   });
 };
 
