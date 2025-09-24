@@ -1,5 +1,8 @@
 import express from "express";
-import { createProduct } from "../controllers/productController.js";
+import {
+  createProduct,
+  getProductByAdmin,
+} from "../controllers/productController.js";
 import { body } from "express-validator";
 import upload from "../lib/uploadImage.js";
 import auth from "../middleware/auth.js";
@@ -14,7 +17,7 @@ const router = express.Router();
 //* middleware
 router.use(auth);
 router.use(adminCheck);
-// router.get("/me");
+router.get("/me", getProductByAdmin);
 // router.get("/:productId");
 router.post(
   "/",

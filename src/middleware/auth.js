@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 
 const auth = (req, res, next) => {
-  const JWT_SECRET = process.env.ACCESS_TOKEN_SECRET;
+  const JWT_SECRET = process.env.JWT_SECRET;
 
   // ambil token dari header -> Bearer[0] token[1]
   const token = req.header("Authorization")?.split(" ")[1]; // "Bearer token"
