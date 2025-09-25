@@ -3,6 +3,7 @@ import {
   createProduct,
   deleteProduct,
   getProductByAdmin,
+  getProductById,
   getProducts,
 } from "../controllers/productController.js";
 import { body } from "express-validator";
@@ -13,7 +14,7 @@ const router = express.Router();
 
 //! public
 router.get("/", getProducts);
-// router.get("/:productId");
+router.get("/:productId", getProductById);
 
 //! protected
 //* middleware
