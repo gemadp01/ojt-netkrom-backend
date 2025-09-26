@@ -97,9 +97,8 @@ export const deleteProduct = async (req, res) => {
       return res.status(404).json({ message: "Product not found!" });
 
     // jika ada file, hapus dari disk
-    if (product.productImage) {
-      const imagePath =
-        process.cwd() + "/public/uploads/" + product.productImage;
+    if (product.image) {
+      const imagePath = process.cwd() + "/public/uploads/" + product.image;
 
       fs.unlink(imagePath, (err) => {
         if (err) console.log("Gagal hapus file: ", err);
