@@ -2,7 +2,7 @@ import express from "express";
 import {
   createProduct,
   deleteProduct,
-  getProductByAdmin,
+  getProductsByAdmin,
   getProductById,
   getProducts,
 } from "../controllers/productController.js";
@@ -20,7 +20,7 @@ router.get("/:productId", getProductById);
 //* middleware
 router.use(auth);
 router.use(adminCheck);
-router.get("/me", getProductByAdmin);
+router.get("/admin/me", getProductsByAdmin);
 // router.get("/:productId");
 router.post(
   "/",
