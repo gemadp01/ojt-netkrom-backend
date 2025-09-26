@@ -5,6 +5,7 @@ import {
   getProductsByAdmin,
   getProductById,
   getProducts,
+  updateProduct,
 } from "../controllers/productController.js";
 import { body } from "express-validator";
 import upload from "../lib/uploadImage.js";
@@ -55,7 +56,7 @@ router.post(
   body("image").notEmpty().withMessage("Image is required"),
   createProduct
 );
-// router.put("/:productId");
+router.put("/:productId", upload.single("image"), updateProduct);
 router.delete("/:productId", deleteProduct);
 
 export default router;
