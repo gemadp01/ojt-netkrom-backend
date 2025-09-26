@@ -26,7 +26,11 @@ export const getProductById = async (req, res) => {
 };
 
 //! admin
-export const getProductByAdmin = async (req, res) => {
+export const getProductsByAdmin = async (req, res) => {
+  if (!req.user || !req.user.id || req.user.role !== "admin") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
+
   try {
     const products = await Product.find({ user: req.user.id });
     res.status(200).json(products);

@@ -53,7 +53,22 @@ export const login = async (req, res) => {
     success: true,
     message: "Login successful",
     token,
+    user: {
+      id: user._id,
+      name: user.name,
+      email: user.email,
+      role: user.role,
+    },
   });
+};
+
+export const getUserByIdFromToken = async (req, res) => {
+  try {
+    const user = await User.findById(req.user.id);
+    res.status(200).json(user);
+  } catch (error) {
+    res.status(500).json({ error: error.message });
+  }
 };
 
 export const logout = (req, res) => {
