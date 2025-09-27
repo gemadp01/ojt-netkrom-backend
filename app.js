@@ -17,6 +17,7 @@ import authRoutes from "./src/routes/authRoutes.js";
 import userRoutes from "./src/routes/userRoutes.js";
 import productRoutes from "./src/routes/productRoutes.js";
 import contactRoutes from "./src/routes/contactRoutes.js";
+import wishlistRoutes from "./src/routes/wishlistRoutes.js";
 
 //! middleware
 app.use(cors());
@@ -28,6 +29,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/users", userRoutes);
 app.use("/api/products", productRoutes);
 app.use("/api/contact", contactRoutes);
+app.use("/api/wishlist", wishlistRoutes);
 
 //! error handling middleware
 app.use((error, req, res, next) => {
