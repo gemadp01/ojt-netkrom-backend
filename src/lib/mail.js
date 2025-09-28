@@ -13,7 +13,10 @@ const transporter = nodemailer.createTransport({
 
 transporter.verify((err, success) => {
   if (err) {
-    console.error("Nodemailer error:", err);
+    console.error(
+      "An internet connection is required to use this feature!\n",
+      err
+    );
   } else {
     console.log("Nodemailer ready to send emails");
   }
