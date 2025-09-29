@@ -1,5 +1,6 @@
 import fs from "fs";
 import Product from "../models/Product.js";
+import WishList from "../models/WishList.js";
 
 //! user
 export const getProducts = async (req, res) => {
@@ -90,6 +91,11 @@ export const updateProduct = async (req, res) => {
 
 export const deleteProduct = async (req, res) => {
   const { productId } = req.params;
+  const userId = req.user?.id;
+
+  if (!userId || req.user.role !== "admin") {
+    return res.status(401).json({ message: "Unauthorized" });
+  }
 
   try {
     const product = await Product.findById(productId);
@@ -104,6 +110,14 @@ export const deleteProduct = async (req, res) => {
         if (err) console.log("Gagal hapus file: ", err);
         else console.log("Berhasil hapus: ", imagePath);
       });
+    }
+
+    const existing = await WishList.find({
+      product: productId,
+    });
+
+    if (existing) {
+      await WishList.deleteMany({ product: productId });
     }
 
     await product.deleteOne();
